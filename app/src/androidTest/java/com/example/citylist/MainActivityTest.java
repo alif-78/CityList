@@ -76,4 +76,36 @@ public class MainActivityTest {
         Espresso.pressBack(); //Back button
     }
 
+    @Test
+    public void uiTest() {
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton")); //Type a city name
+        Espresso.pressBack();
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("New York")); //Type a city name
+        Espresso.pressBack();
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Chicago")); //Type a city name
+        Espresso.pressBack();
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Texas")); //Type a city name
+        Espresso.pressBack();
+        onView(withId(R.id.button_confirm)).perform(click());
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(2).perform(click());
+
+        onView(withId(R.id.showLayout)).check(matches(isDisplayed()));
+
+        onView(withText("Chicago")).check(matches(isDisplayed()));
+
+        onView(withId(R.id.button)).perform(click());
+
+        onView(withId(R.id.mainLayout)).check(matches(isDisplayed()));
+    }
 }
